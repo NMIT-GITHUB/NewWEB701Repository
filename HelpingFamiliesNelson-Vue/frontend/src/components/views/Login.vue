@@ -50,6 +50,7 @@ export default {
     ErrorMessage,
   },
   data() {
+    //Creates schema for the form to follow including errors
     const schema = yup.object().shape({
       username: yup.string().required("Username is required!"),
       password: yup.string().required("Password is required!"),
@@ -62,19 +63,22 @@ export default {
     };
   },
   computed: {
+    //Checks to see whether there is a user logged in or not
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
   },
+    //if user logged in, go to profile view
   created() {
     if (this.loggedIn) {
       this.$router.push("/profile");
     }
   },
   methods: {
+    // function sends form data to store
     handleLogin(user) {
       this.loading = true;
-
+      //sends user data to store at "auth/login"
       this.$store.dispatch("auth/login", user).then(
         () => {
           this.$router.push("/profile");

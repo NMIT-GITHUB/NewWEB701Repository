@@ -103,11 +103,14 @@ export class UploadItemComponent implements OnInit {
   currentUser: any;
   constructor(private authService: AuthService, private token: TokenStorageService) { }
 
+  //gets the current user object
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
   }
 
+  //begins the process of uploading an item in the form of an array to a user.
   onSubmit(data: NgForm): void {
+    //sends data to authService.upload
     this.authService.upload(this.currentUser.username, data.controls['categoryName'].value, data.controls['size'].value, data.controls['gender'].value, data.controls['age'].value, data.controls['other'].value, ).subscribe(
       data => {
         console.log(data);

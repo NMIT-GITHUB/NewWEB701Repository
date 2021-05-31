@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private token: TokenStorageService) { }
 
+  //retrieves user data upon page load
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
   }

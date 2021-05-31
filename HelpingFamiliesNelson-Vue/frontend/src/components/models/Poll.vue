@@ -85,18 +85,22 @@ export default {
     }
   },
   computed: {
+    // returns the current users data
     currentUser() {
       return this.$store.state.auth.user;
     },
+    // returns whether a user is logged in
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
   },
   methods: {
+    // function sends form data to store
     handleClick(value) {
       this.message = value;
       this.successful = false;
-
+      
+      //sends upload data to store at "auth/redeem"
       this.$store.dispatch("auth/redeem", this.currentUser).then(
         (data) => {
           this.message = data;
@@ -114,6 +118,7 @@ export default {
           this.successful = false;
         }
       );
+      //supposed to update the component. Doesn't really work...
       this.$forceUpdate();
       this.reRenderKey +=1;
       this.$forceUpdate();
@@ -121,6 +126,7 @@ export default {
     
   },
   mounted() {
+    // ensures tokens  matches current user
     if (this.currentUser) {
       this.tokens = this.currentUser.tokens;
       this.$forceUpdate();

@@ -82,6 +82,7 @@ export default {
     ErrorMessage,
   },
   data() {
+    //Creates schema for the form to follow including errors
     const schema = yup.object().shape({
       username: yup
         .string()
@@ -117,21 +118,24 @@ export default {
     };
   },
   computed: {
+    //Checks to see whether there is a user logged in or not
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
   },
   mounted() {
+    //if user logged in, go to profile view
     if (this.loggedIn) {
       this.$router.push("/profile");
     }
   },
   methods: {
+    // function sends form data to store
     handleRegister(user) {
       this.message = "";
       this.successful = false;
       this.loading = true;
-
+      //sends user data to store at "auth/register"
       this.$store.dispatch("auth/register", user).then(
         (data) => {
           this.message = data.message;

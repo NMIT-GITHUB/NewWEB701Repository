@@ -121,12 +121,15 @@ export default {
     };
   },
   computed: {
+    // returns current user info
     currentUser() {
       return this.$store.state.auth.user;
     },
+    // returns login status
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
+    // returns login status t/f
     loggedOut() {
       if (!this.$store.state.auth.status.loggedIn)
       {
@@ -136,21 +139,25 @@ export default {
         return false;
       }
     },
+    // returns whether user is of type Charity
     typeCharity() {
       return this.$store.state.auth.status.charity;
     },
+    // returns whether user is of type Beneficiary
     typeBeneficiary() {
       return this.$store.state.auth.status.beneficiary;
     }
   },
   methods: {
+    // function sends form data to store
     handleUpload(upload) {
+      // add username to upload object for future reference
       upload.user = this.currentUser;
-      console.log(this.currentUser);
       this.message = "";
       this.successful = false;
       this.loading = true;
       
+      //sends upload data to store at "auth/upload"
       this.$store.dispatch("auth/upload", upload).then(
         (data) => {
           console.log(data);
@@ -171,6 +178,7 @@ export default {
       );
 
     },
+    // reverts form for re-entry
     handleClick() {
       console.log(this.currentUser)
         this.successful = false;

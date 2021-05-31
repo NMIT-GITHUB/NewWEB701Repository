@@ -14,12 +14,13 @@ export class PollComponent implements OnInit {
   errorMessage = '';
 
   constructor(private token: TokenStorageService, private authService: AuthService) { }
-
+  //retrieves active user details
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
   }
  //Sends the logged in users details and the given value to authService to begin passing data to backend
   vote(value: string) {
+    //submit vote by sending username and value to authService to redeem
     this.authService.redeem(this.currentUser.username, value).subscribe(
       data => {
         //makes sure the tokens are of the same value

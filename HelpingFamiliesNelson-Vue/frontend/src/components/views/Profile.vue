@@ -48,17 +48,21 @@
 export default {
   name: 'Profile',
   computed: {
+    //returns current user data
     currentUser() {
       return this.$store.state.auth.user;
     },
+    //returns item array
     test() {
       return this.$store.state.auth.user.items
     },
+    // returns login status
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
   },
   mounted() {
+    //if user isnt logged in, push to login view
     if (!this.currentUser) {
       this.$router.push('/login');
     }

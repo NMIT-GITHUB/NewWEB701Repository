@@ -27,8 +27,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    //sets values equal to form values
     const { username, password } = this.form;
 
+    //sends these values to the authService
     this.authService.login(username, password).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
@@ -45,7 +47,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
+  //reloads the page to ensure it is up to date
   reloadPage(): void {
     window.location.reload();
   }
