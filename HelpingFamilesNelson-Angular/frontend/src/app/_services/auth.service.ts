@@ -22,7 +22,7 @@ export class AuthService {
     }, httpOptions);
   }
 
-  // Handles register by sending a signup request with given username, email, password, adderss and phone to AUTH_API
+  // Handles register by sending a signup request with given username, email, password, address and phone to AUTH_API
   register(username: string, email: string, password: string, address: string, phone: string): Observable<any> {
     return this.http.post(AUTH_API + 'signup', {
       username,
@@ -44,7 +44,7 @@ export class AuthService {
       other
     }, httpOptions)
   }
-  
+
   // Handles redeem by sending a redeem request with given username and value to AUTH_API
   redeem(username: string, value: string): Observable<any> {
     return this.http.post(AUTH_API + 'redeem', {
