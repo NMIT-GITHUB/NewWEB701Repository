@@ -1,0 +1,78 @@
+<div id="poll" class="container-fluid">
+    <div class="text-center">
+      <h2>poll</h2>
+      <h4>You can spend you tokens by voting for the next group we aim to support! <br> The group with the most votes is who we will aim to help out next!</h4>
+    </div>
+    <div class="row">
+      <div class="col-sm-4 col-xs-12">
+        <div class="d-flex panel panel-default text-center flex-column">
+          <div class="panel-heading">
+            <h1>First<br>Option</h1>
+          </div>
+          <div class="panel-body">
+            <br>
+            <p><strong>Oldies in Need</strong></p>
+            <p>
+                There are people in our community that have done their part and now it is our turn to help them! The pension isn't that much and some can find it hard to get new clothes!
+                <br>
+                In supporting this charity we support our elders.
+            </p>
+            <p><strong>2</strong> Sit</p>
+            <p><strong>Endless</strong> Amet</p>
+          </div>
+          <div class="panel-footer mt-auto">
+            <br>
+            <h3>1</h3>
+            <h4>Token</h4>
+            <button (click)="vote('First')" class="btn btn-lg">VOTE</button>
+          </div>
+        </div>      
+      </div>     
+      <div class="col-sm-4 col-xs-12">
+        <div class="d-flex panel panel-default text-center flex-column">
+          <div class="panel-heading">
+            <h1>Second<br>Option</h1>
+          </div>
+          <div class="panel-body">
+              <br>
+            <p><strong>Victory Square Familes</strong></p>
+            <p><strong>25</strong> Ipsum</p>
+            <p><strong>10</strong> Dolor</p>
+            <p><strong>5</strong> Sit</p>
+            <p><strong>Endless</strong> Amet</p>
+          </div>
+          <div class="panel-footer mt-auto">
+            <br>
+            <h3>1</h3>
+            <h4>Token</h4>
+            <button (click)="vote('Second')" class="btn btn-lg">VOTE</button>
+          </div>
+        </div>      
+      </div>       
+      <div class="col-sm-4 col-xs-12">
+        <div class="d-flex panel panel-default text-center flex-column">
+          <div class="panel-heading">
+            <h1>Third<br>Option</h1>
+          </div>
+          <div class="panel-body">
+            <br>
+            <p><strong>Tuakana Teina</strong><br>(Big Brother Big Sister)</p>
+            <p></p>
+            <p>These guys provide mentors for young tamariki (children) in need. Supporting them with clothes can help increase the effectiveness of their mission!</p>
+          </div>
+          <div class="panel-footer mt-auto">
+            <br>
+            <h3>1</h3>
+            <h4>Token</h4>
+            <button (click)="vote('Third')" class="btn btn-lg">VOTE</button>
+          </div>      
+      </div>   
+    </div> 
+    <div class="row" style="width: 100%;">
+     <div class= "d-flex justify-content-center" style="margin: 0 auto; margin-top: 50px;">
+        <br>
+         <h3><strong>Your Tokens:</strong> {{currentUser.tokens}}</h3>
+     </div>
+    </div> 
+  </div>
+</div>

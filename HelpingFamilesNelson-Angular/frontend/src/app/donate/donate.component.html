@@ -1,0 +1,20 @@
+<div class="container justify-content-center" *ngIf="currentUser.username; else loggedOut">
+    <header class="jumbotron">
+      <div class="d-flex justify-content-center">
+        <h3>
+          Here you, <strong>{{ currentUser.username }}</strong>, can Donate!
+        </h3>
+      </div>
+      <div class="d-flex justify-content-center">
+        <p>
+          Thankyou so much for your support!
+        </p>
+      </div>
+    </header>
+    <app-upload-item></app-upload-item>
+  
+</div>
+  <ng-template #loggedOut>
+    Please login in order to donate!
+  </ng-template>
+  
