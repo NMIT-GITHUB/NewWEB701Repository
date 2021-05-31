@@ -12,12 +12,7 @@ const User = mongoose.model(
       type: Number,
       default: 0
     },
-    roles: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Role"
-      }
-    ],
+    userType: String,
     items: [
       {
         type: mongoose.Schema.Types.ObjectId,

@@ -33,7 +33,20 @@
             <Field name="address" type="text" class="form-control" />
             <ErrorMessage name="address" class="error-feedback" />
           </div>
-
+          <div class="form-group">
+            <label for="userType">User Type</label>
+          <div class="d-flex flex-row justify-content-center">
+            <div class="p-2">
+                <Field name="userType" id="Charity" value="Charity" type="radio" class="form-control" />
+                <label for="Charity"><p>Charity</p></label>
+            </div>
+            <div class="p-2">
+                <Field name="userType" id="Beneficiary" value="Beneficiary" type="radio" class="form-control" />
+                <label for="Beneficiary"><p>Beneficiary</p></label>
+            </div>
+            </div>
+            <ErrorMessage name="userType" class="error-feedback" />
+          </div>
           <div class="form-group">
             <button class="btn btn-primary btn-block" :disabled="loading">
               <span
@@ -91,6 +104,9 @@ export default {
       address: yup
         .string()
         .required("Address is required!"),
+      userType: yup
+        .string()
+        .required("User Type is required!")
     });
 
     return {

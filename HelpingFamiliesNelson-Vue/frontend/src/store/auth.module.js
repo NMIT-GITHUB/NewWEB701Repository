@@ -78,6 +78,11 @@ export const auth = {
   mutations: {
     loginSuccess(state, user) {
       state.status.loggedIn = true;
+      if (user.userType == "Charity") {
+        state.status.charity = true;
+      } else if (user.userType == "Beneficiary") {
+        state.status.beneficiary = true;
+      }
       state.user = user;
     },
     loginFailure(state) {
@@ -86,6 +91,8 @@ export const auth = {
     },
     logout(state) {
       state.status.loggedIn = false;
+      state.status.charity = false;
+      state.status.beneficiary = false;
       state.user = null;
     },
     registerSuccess(state) {

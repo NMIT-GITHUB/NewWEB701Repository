@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-12">
-    <div v-if="loggedIn" class="card card-container" >
+    <div v-if="typeCharity" class="card card-container" >
       <Form @submit="handleUpload" :validation-schema="schema">
         <div v-if="!successful">
           <div class="form-group">
@@ -74,6 +74,16 @@
         </div>
       </div>
     </div>
+  <div>
+    <div v-if="typeBeneficiary" class="p-2 text-center">
+        <h6>Beneficiaries cannot donate!</h6>
+    </div>
+  </div>
+  <div>
+    <div v-if="loggedOut" class="p-2 text-center">
+        <h6>You need to be logged in as a charity to donate!</h6>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -117,6 +127,21 @@ export default {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
+    loggedOut() {
+      if (!this.$store.state.auth.status.loggedIn)
+      {
+        return true;
+      }
+      else {
+        return false;
+      }
+    },
+    typeCharity() {
+      return this.$store.state.auth.status.charity;
+    },
+    typeBeneficiary() {
+      return this.$store.state.auth.status.beneficiary;
+    }
   },
   methods: {
     handleUpload(upload) {

@@ -15,6 +15,7 @@ exports.signup = (req, res) => {
     password: bcrypt.hashSync(req.body.password, 8),
     address: req.body.address,
     phone: req.body.phone,
+    userType: req.body.userType,
     tokens: 0
   });
 
@@ -71,8 +72,6 @@ exports.signin = (req, res) => {
   User.findOne({
     username: req.body.username
   })
-    .populate("roles", "-__v")
-    // .populate("items")
     .exec((err, user) => {
       if (err) {
         res.status(500).send({ message: err });
@@ -99,12 +98,6 @@ exports.signin = (req, res) => {
         expiresIn: 86400 // 24 hours
       });
 
-      var authorities = [];
-
-      for (let i = 0; i < user.roles.length; i++) {
-        authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
-      }
-
       var listings = [];
 
       for (let i = 0; i < user.items.length; i++) {
@@ -118,7 +111,7 @@ exports.signin = (req, res) => {
         address: user.address,
         phone: user.phone,
         tokens: user.tokens,
-        roles: authorities,
+        userType: user.userType,
         items: listings,
         accessToken: token
       });
