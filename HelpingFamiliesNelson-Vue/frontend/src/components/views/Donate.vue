@@ -74,16 +74,16 @@
         </div>
       </div>
     </div>
-  <div>
-    <div v-if="typeBeneficiary" class="p-2 text-center">
+    <div v-else-if="typeBeneficiary" class="card card-container">
+       <div class="alert alert-danger d-flex flex-column mb-3 justify-content-center">
         <h6>Beneficiaries cannot donate!</h6>
+       </div>
     </div>
-  </div>
-  <div>
-    <div v-if="loggedOut" class="p-2 text-center">
-        <h6>You need to be logged in as a charity to donate!</h6>
+    <div v-else class="card card-container">
+        <div class="alert alert-danger d-flex flex-column mb-3 justify-content-center">
+        <h6>You must be logged in as a Charity User donate!</h6>
+       </div>
     </div>
-  </div>
   </div>
 </template>
 

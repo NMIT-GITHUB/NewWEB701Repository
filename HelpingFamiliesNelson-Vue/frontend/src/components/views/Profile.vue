@@ -25,10 +25,10 @@
       <strong>Address:</strong>
       {{currentUser.address}}
     </p>
-    <strong>Authorities:</strong>
-    <ul>
-      <li v-for="role in currentUser.roles" :key="role">{{role}}</li>
-    </ul>
+    <p>
+      <strong>User Type:</strong>
+      {{currentUser.userType}}
+    </p>
     <p>
       <strong>Number of items donated:</strong>
       {{currentUser.items.length}}
