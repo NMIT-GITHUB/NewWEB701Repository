@@ -5,6 +5,7 @@ const Item = mongoose.model(
   new mongoose.Schema({
     categoryName: String,
     size: String,
+    colour: String,
     gender: String,
     age: Number,
     other: String

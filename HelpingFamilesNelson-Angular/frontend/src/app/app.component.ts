@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { TokenStorageService } from './_services/token-storage.service';
+import { faHome, faQuestionCircle, faPhone, faCloudUploadAlt, faUsers, faUserPlus, faSignInAlt, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,19 @@ export class AppComponent implements OnInit {
   title(title: any) {
     throw new Error('Method not implemented.');
   }
-  private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  faHome = faHome;
+  faQuestionCircle = faQuestionCircle;
+  faPhone = faPhone;
+  faCloudUploadAlt = faCloudUploadAlt;
+  faUsers = faUsers;
+  faUserPlus = faUserPlus;
+  faSignInAlt = faSignInAlt;
+  faUser = faUser;
+  faSignOutAlt = faSignOutAlt;
 
   constructor(private tokenStorageService: TokenStorageService) { }
 
@@ -24,11 +33,6 @@ export class AppComponent implements OnInit {
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
       this.username = user.username;
     }
   }

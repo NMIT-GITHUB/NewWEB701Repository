@@ -1,18 +1,18 @@
 <div class="container">
   <header class="jumbotron">
     <!-- <p>{{ content }}</p> -->
-    <h3 *ngIf="currentUser.username; else loggedOut">
+    <h3 class="text-center" *ngIf="currentUser.username; else loggedOut">
       Welcome Back <strong>{{ currentUser.username }}</strong>
     </h3>
     <ng-template #loggedOut>
-      <h3>Welcome to Helping Families Nelson</h3>
+      <h3 class="text-center">Welcome to Helping Families Nelson</h3>
     </ng-template>
-
+  <br/>
     <app-carousel></app-carousel>
     <br>
     <div class="container-fluid bg-2 text-center rounded">
       <h3 class="margin">About Us</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+      <p>Helping families with necessities to help children thrive and reach their potential</p>
       <a href="#" class="btn btn-default btn-lg">
         <span class="glyphicon glyphicon-search"></span> Find Out More
       </a>

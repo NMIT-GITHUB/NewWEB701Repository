@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -68,6 +69,7 @@ import { FooterComponent } from './modules/footer/footer.component';
     GalleryModule,
     LightboxModule,
     MatFormFieldModule,
+    FontAwesomeModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -1,17 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../_services/auth.service';
 import { TokenStorageService } from '../../_services/token-storage.service';
-import { NgForm, FormControl, FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
-
-// interface Category {
-//   value: string;
-//   viewValue: string;
-// }
-
-// interface CategoryGroup {
-//   name: string;
-//   category: Category[];
-// }
+import { NgForm, FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-upload-item',
@@ -19,17 +9,7 @@ import { NgForm, FormControl, FormBuilder, Validators, FormGroup, FormArray } fr
   styleUrls: ['./upload-item.component.css']
 })
 export class UploadItemComponent implements OnInit {
-  form = new FormGroup({
-    categoryName: new FormControl('', [Validators.required]),
-    size: new FormControl('', [Validators.required]),
-    gender: new FormControl(''),
-    age: new FormControl(''),
-    other: new FormControl(''),
-  });
-
-
   
-
   // categoryControl = new FormControl();
   // categoryGroups: CategoryGroup[] = [
   //   {
@@ -97,6 +77,14 @@ export class UploadItemComponent implements OnInit {
   //     ]
   //   },
   // ]
+  form = new FormGroup({
+    categoryName: new FormControl(''),
+    size: new FormControl(''),
+    gender: new FormControl(''),
+    age: new FormControl(''),
+    other: new FormControl(''),
+  });
+  isSubmit = false;
   isSuccessful = false;
   isUploadFailed = false;
   errorMessage = '';
@@ -110,24 +98,30 @@ export class UploadItemComponent implements OnInit {
 
   //begins the process of uploading an item in the form of an array to a user.
   onSubmit(data: NgForm): void {
-    //sends data to authService.upload
-    this.authService.upload(this.currentUser.username, data.controls['categoryName'].value, data.controls['size'].value, data.controls['gender'].value, data.controls['age'].value, data.controls['other'].value, ).subscribe(
-      data => {
-        console.log(data);
-        this.currentUser.tokens = data.tokens;
-        this.isSuccessful = true;
-        this.isUploadFailed = false;
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.isUploadFailed = true;
+    this.isSubmit = true;
+    if (data.valid)
+    {
+      //sends data to authService.upload
+      this.authService.upload(this.currentUser.username, data.controls['categoryName'].value, data.controls['size'].value, data.controls['colour'].value, data.controls['gender'].value, data.controls['age'].value, data.controls['other'].value, ).subscribe(
+        data => {
+          console.log(data);
+          this.currentUser.tokens = data.tokens;
+          this.isSuccessful = true;
+          this.isUploadFailed = false;
+          //this.reloadPage();
+        },
+        err => {
+          this.errorMessage = err.error.message;
+          this.isUploadFailed = true;
+        },
+      );
+      window.scroll(0,0);
       }
-    );
     }
-
-  changeCategory(e: any, data: NgForm): void {
-    this.form.controls = e.target.value
     
+
+  reloadPage(): void {
+    window.location.reload();
   }
 }
 

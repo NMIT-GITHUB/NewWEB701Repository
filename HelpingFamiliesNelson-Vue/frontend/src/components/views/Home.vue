@@ -3,6 +3,7 @@
     <header class="jumbotron">
       <h3>{{ content }}</h3>
     </header>
+    <carousel-section />
     <poll-section :key="reRenderKey"></poll-section>
   </div>
 </template>

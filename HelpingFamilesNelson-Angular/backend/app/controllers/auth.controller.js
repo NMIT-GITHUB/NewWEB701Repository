@@ -16,6 +16,7 @@ exports.signup = (req, res) => {
     password: bcrypt.hashSync(req.body.password, 8),
     address: req.body.address,
     phone: req.body.phone,
+    type: req.body.type,
     tokens: 0
   });
 
@@ -25,49 +26,13 @@ exports.signup = (req, res) => {
       res.status(500).send({ message: err });
       return;
     }
-    //find the role associated with the user if it exists
-    if (req.body.roles) {
-      Role.find(
-        {
-          name: { $in: req.body.roles }
-        },
-        (err, roles) => {
-          if (err) {
-            res.status(500).send({ message: err });
-            return;
-          }
-
-          user.roles = roles.map(role => role._id);
-          user.save(err => {
-            if (err) {
-              res.status(500).send({ message: err });
-              return;
-            }
-
-            res.send({ message: "User was registered successfully!" });
-          });
-        }
-      );
-    } else {
-      //if there is no role associated with the user, it will be given the default "User"
-      Role.findOne({ name: "user" }, (err, role) => {
-        if (err) {
-          res.status(500).send({ message: err });
-          return;
-        }
-
-        user.roles = [role._id];
-        //save user in system
-        user.save(err => {
-          if (err) {
-            res.status(500).send({ message: err });
-            return;
-          }
-
-          res.send({ message: "User was registered successfully!" });
-        });
-      });
-    }
+    user.save(err => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      }
+      res.send({ message: "User was registered successfully!" });
+    });
   });
 };
 
@@ -77,7 +42,7 @@ exports.signin = (req, res) => {
   User.findOne({
     username: req.body.username
   })
-    .populate("roles", "-__v")
+    .populate("items")
     .exec((err, user) => {
       if (err) {
         res.status(500).send({ message: err });
@@ -107,10 +72,15 @@ exports.signin = (req, res) => {
         expiresIn: 86400 // 24 hours
       });
 
-      //creates an array of user roles
-      var authorities = [];
-      for (let i = 0; i < user.roles.length; i++) {
-        authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
+      //creates an array of user items
+      var itemList = [];
+      for (let i = 0; i < user.items.length; i++) {
+        console.log(user.items[i])
+        var base64Url = token.split('.')[1]; 
+        var base64 = base64Url.replace('-', '+').replace('_', '/'); 
+        user.items[i] = JSON.parse($window.atob(base64));
+        itemList.push(user.items[i]);
+        console.log(user.items[i])
       }
       //send user data back to frontend
       res.status(200).send({
@@ -119,8 +89,9 @@ exports.signin = (req, res) => {
         email: user.email,
         address: user.address,
         phone: user.phone,
+        type: user.type,
         tokens: user.tokens,
-        roles: authorities,
+        items: itemList,
         accessToken: token
       });
     });
@@ -132,6 +103,7 @@ exports.uploadItem = (req, res) => {
   const newItem = new Item({
     categoryName: req.body.categoryName,
     size: req.body.size,
+    colour: req.body.colour,
     gender: req.body.gender,
     age: req.body.age,
     other: req.body.other

@@ -131,6 +131,9 @@
     <div class="container">
       <router-view />
     </div>
+
+      <footer-section />
+
   </div>
 </template>
 
