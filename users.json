@@ -1,0 +1,168 @@
+[{
+  "_id": {
+    "$oid": "60d5b833b5fd7f4ff0cb173a"
+  },
+  "tokens": 0,
+  "username": "OldiesInNeed",
+  "email": "oldiesinneed@oin.co.nz",
+  "password": "$2a$08$rV5o5zp9CYTt3UiGAMVOxOzxTv.omy1t3xLnxjSLRICrDrshtReRC",
+  "address": "48 Hill Street, Richmond",
+  "phone": "035434661",
+  "userType": "Beneficiary",
+  "items": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60d5b8aab5fd7f4ff0cb173b"
+  },
+  "tokens": 3,
+  "username": "VictorySquareFamilies",
+  "email": "victorysquarefamilies@vsf.co.nz",
+  "password": "$2a$08$yt5/GkWYHZozyFyVsPQTN.9ncKnSQPYpV1ang6C3QFR4igH/Uxxh.",
+  "address": "01 Victory Street",
+  "phone": "035457686",
+  "userType": "Beneficiary",
+  "items": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60d5b9fcb5fd7f4ff0cb173c"
+  },
+  "tokens": 0,
+  "username": "BigBrotherBigSister",
+  "email": "bigbrotherbigsister@bbbs.co.nz",
+  "password": "$2a$08$Y97LmDTOwdiXACPNNaUJYO4aAhGpfgb/6unDD09MOIHl1P7EtnuEu",
+  "address": "67 Princes Drive",
+  "phone": "035463371",
+  "userType": "Beneficiary",
+  "items": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60d5bc7df0ab2966f0024abd"
+  },
+  "tokens": 5,
+  "username": "newcharity",
+  "email": "newcharity@newcharity.com",
+  "password": "$2a$08$RjT05xUnUZ.1a8odR3EuCeQIQ5ZCkEOLqWmX81mNNJtGqu/k74bWK",
+  "address": "123123123",
+  "phone": "123123123",
+  "userType": "Charity",
+  "items": [
+    {
+      "_id": {
+        "$oid": "60d5c83c9860fb0218dde09e"
+      },
+      "categoryName": "nerw",
+      "size": "12",
+      "gender": "male",
+      "age": 12,
+      "other": "asdasd"
+    },
+    {
+      "_id": {
+        "$oid": "60d5c9feb187f2714c8cfe95"
+      },
+      "categoryName": "newshirt",
+      "size": "16",
+      "gender": "male",
+      "age": 19,
+      "other": "Small stain on left sleeve"
+    },
+    {
+      "_id": {
+        "$oid": "60d5cafcb187f2714c8cfe97"
+      },
+      "categoryName": "123",
+      "size": "123",
+      "gender": "male",
+      "age": 123,
+      "other": "123"
+    },
+    {
+      "_id": {
+        "$oid": "60d5cb69cb0722396017d17c"
+      },
+      "categoryName": "111",
+      "size": "123",
+      "gender": "male",
+      "age": 2313,
+      "other": "123"
+    },
+    {
+      "_id": {
+        "$oid": "60d5cbfbcb0722396017d17e"
+      },
+      "categoryName": "234121",
+      "size": "2341234",
+      "gender": "male",
+      "age": 12341234,
+      "other": "3243"
+    },
+    {
+      "_id": {
+        "$oid": "60d5cc3dcb0722396017d180"
+      },
+      "categoryName": "123123",
+      "size": "123123",
+      "gender": "male",
+      "age": 2312,
+      "other": "123"
+    },
+    {
+      "_id": {
+        "$oid": "60d5ccf4cb0722396017d182"
+      },
+      "categoryName": "sadasda",
+      "size": "sd",
+      "gender": "male",
+      "other": "sda"
+    },
+    {
+      "_id": {
+        "$oid": "60d5cd2ccb0722396017d184"
+      },
+      "categoryName": "weqwew",
+      "size": "qweqw",
+      "gender": "male",
+      "other": "qwe"
+    },
+    {
+      "_id": {
+        "$oid": "60d5cda6cb0722396017d186"
+      },
+      "categoryName": "das",
+      "size": "asd",
+      "gender": "male",
+      "other": "asd"
+    },
+    {
+      "_id": {
+        "$oid": "60d5cdd7cb0722396017d188"
+      },
+      "categoryName": "asda",
+      "size": "asdas",
+      "gender": "male",
+      "other": "asd"
+    },
+    {
+      "_id": {
+        "$oid": "60d5cdf8cb0722396017d18a"
+      },
+      "categoryName": "qweqew",
+      "size": "qweqw",
+      "gender": "male",
+      "other": "asd"
+    },
+    {
+      "_id": {
+        "$oid": "60d5ce08cb0722396017d18c"
+      },
+      "categoryName": "21e21",
+      "size": "awedasd",
+      "gender": "other",
+      "other": "asd"
+    }
+  ],
+  "__v": 12
+}]

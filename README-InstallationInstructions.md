@@ -13,7 +13,7 @@ username: BigBrotherBigSister, password: Password123
 
 These users are beneficiaries and when a charity user submits a vote in the poll, they receive a token if they were voted for!
 This can be seen in the Profile page.
-As I am using a local mongodb, you will need to create these users to test. 
+As I am using a local mongodb, you will either need to create these users to test, or import the collection from the provided "users.json" 
 Input anything for the other fields in registration as long as the username is right it will work.
 
 For a charity member, you need to acquire tokens by uploading clothes in the donation window. The charity user will receive one token for each item and they 
