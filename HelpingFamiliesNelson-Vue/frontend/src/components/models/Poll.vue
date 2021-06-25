@@ -1,5 +1,5 @@
 <template>
-    <div id="poll" class="container-fluid">
+    <div id="poll" class="container-fluid" v-if="charity">
         <div class="text-center">
             <h2>Poll</h2>
             <h4>You can spend you tokens by voting for the next group we aim to support! <br> The group with the most votes is who we will aim to help out next!</h4>
@@ -23,7 +23,7 @@
                         <br>
                         <h3>1</h3>
                         <h4>Token</h4>
-                        <button @Click="handleClick('First')" class="btn btn-lg">VOTE</button>
+                        <button @Click="handleClick('OldiesInNeed')" class="btn btn-lg">VOTE</button>
                     </div>
                 </div>      
             </div>     
@@ -42,7 +42,7 @@
                         <br>
                         <h3>1</h3>
                         <h4>Token</h4>
-                        <button @Click="handleClick('Second')" class="btn btn-lg">VOTE</button>
+                        <button @Click="handleClick('VictorySquareFamilies')" class="btn btn-lg">VOTE</button>
                     </div>
                 </div>      
             </div>       
@@ -61,15 +61,26 @@
                             <br>
                             <h3>1</h3>
                             <h4>Token</h4>
-                            <button @Click="handleClick('Third')" class="btn btn-lg">VOTE</button>
+                            <button @Click="handleClick('BigBrotherBigSister')" class="btn btn-lg">VOTE</button>
                         </div>      
                     </div>   
                 </div> 
-                <div v-if="loggedIn" class="row" style="width: 100%;">
-                    <div class= "d-flex justify-content-center" style="margin: 0 auto; margin-top: 50px;">
-                        <br>
-                        <h3 :key="reRenderKey"><strong>{{ currentUser.username }}'s Tokens:</strong> {{tokens}}</h3>
+                <div v-if="loggedIn" style="width: 100%;">
+                  <div v-if="submit">
+                    <div class="alert alert-danger text-center" v-if="!success">
+                      <h4>You don't enough any tokens!</h4>
                     </div>
+                    <div class="alert alert-success text-center" v-if="successful">
+                      <h4>Thankyou for your vote!</h4>
+                    </div>
+                  </div>
+                  <div v-if="!submit">
+                    <br>
+                  </div>
+                  <div class= "d-flex justify-content-center" style="margin: 0 auto;">
+                      <h3 :key="reRenderKey"><strong>{{ currentUser.username }}'s Tokens:</strong> {{tokens}}</h3>
+                  </div>
+                    
                 </div> 
         </div>
     </div>
@@ -82,6 +93,12 @@ export default {
     return {
       reRenderKey: 0,
       tokens: 0,
+      submission: {
+        user: "",
+        beneficiary: "",
+      },
+      message: "",
+      submit: false,
     }
   },
   computed: {
@@ -93,20 +110,72 @@ export default {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
+    charity() {
+      if (this.$store.state.auth.user)
+      {
+        if (this.$store.state.auth.user.userType == "Charity")
+        {
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+      else{
+        return false;
+      }
+    },
+    submitted() {
+      if (this.submit)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    },
+    success() {
+      if (this.message)
+      {
+        if (this.message == "Token redeemed successfully!")
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      else
+        {
+          return false;
+        }
+    }
   },
   methods: {
     // function sends form data to store
     handleClick(value) {
-      this.message = value;
+      this.submission.beneficiary = value;
+      this.submission.user = this.currentUser;
+      this.submit = true;
       this.successful = false;
       
       //sends upload data to store at "auth/redeem"
-      this.$store.dispatch("auth/redeem", this.currentUser).then(
+      this.$store.dispatch("auth/redeem", this.submission).then(
         (data) => {
           this.message = data;
-          this.tokens -= 1;
-          console.log(data);
-          this.successful = true;
+          if (data == "You don't enough any tokens!")
+          {
+            this.successful = false;
+            console.log(data);
+          }
+          else
+          {
+            this.tokens -= 1;
+            console.log(data);
+            this.successful = true;
+          }
         },
         (error) => {
           this.message =
@@ -247,6 +316,12 @@ body {
     -webkit-animation-duration: 1s;
     visibility: visible;
   }
+  .alert {
+    padding-top: 40px;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+
   @keyframes slide {
     0% {
       opacity: 0;

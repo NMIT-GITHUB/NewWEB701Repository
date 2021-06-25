@@ -93,6 +93,9 @@ import * as yup from "yup";
 
 export default {
   name: "Upload",
+  mounted() {
+    window.scrollTo(0,0);
+  },
   components: {
     Form,
     Field,
@@ -161,7 +164,7 @@ export default {
       this.$store.dispatch("auth/upload", upload).then(
         (data) => {
           console.log(data);
-          this.message = data;
+          this.message = data.message;
           this.successful = true;
           this.loading = false;
         },

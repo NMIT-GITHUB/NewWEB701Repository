@@ -108,10 +108,14 @@ exports.signin = (req, res) => {
         expiresIn: 86400 // 24 hours
       });
 
-      var listings = [];
+      //var listings = [];
 
+      // for (let i = 0; i < user.items.length; i++) {
+      //   listings.push("ITEM_" + user.items[i])     //.categoryName.toUpperCase());
+      // }
+      var listings = [];
       for (let i = 0; i < user.items.length; i++) {
-        listings.push("ITEM_" + user.items[i])     //.categoryName.toUpperCase());
+        listings.push(user.items[i])
       }
 
       //send user data back to frontend
@@ -129,7 +133,7 @@ exports.signin = (req, res) => {
     });
 };
 
-//handles the request to up'load an item to a user
+//handles the request to upload an item to a user
 exports.uploadItem = (req, res) => {
   //creates a new const matching the Item schema
   const newItem = new Item({
@@ -174,6 +178,19 @@ exports.getItems = (req, res) => {
 
 //handles request to vote/redeem a token
 exports.redeem = (req, res) => {
+  console.log(req.body.beneficiary)
+  console.log(req.body.username)
+  User.findOne({
+    username: req.body.beneficiary
+  })
+  .exec((err, bUser) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+    bUser.tokens += 1;
+    bUser.save();
+  })
   //looks for a username in the db matching the requested username
   User.findOne({
     username: req.body.username
@@ -197,9 +214,9 @@ exports.redeem = (req, res) => {
       });
     }
     else{
-      //is user doesnt ahve enough tokens return error message
+      //user doesnt have enough tokens return error message
       res.status(200).send({
-        message: "You don't have any tokens!"
+        message: "You don't enough any tokens!"
       })
     }
     

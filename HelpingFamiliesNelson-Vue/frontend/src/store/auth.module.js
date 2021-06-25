@@ -40,7 +40,8 @@ export const auth = {
     upload({ commit }, data) {
       return AuthService.upload(data).then(
         data => {
-          commit('uploadSuccess');
+          console.log(data.updatedUser)
+          commit('uploadSuccess', data.updatedUser);
           return Promise.resolve(data);
         },
         error => {
@@ -49,10 +50,11 @@ export const auth = {
         },
       );
     },
-    redeem({ commit }, user) {
-      return AuthService.redeem(user).then(
+    redeem({ commit }, submission) {
+      console.log(submission)
+      return AuthService.redeem(submission).then(
         data => {
-          commit('redeemSuccess', user);
+          commit('redeemSuccess', submission.user);
           return Promise.resolve(data);
         },
         error => {
@@ -101,8 +103,9 @@ export const auth = {
     registerFailure(state) {
       state.status.loggedIn = false;
     },
-    uploadSuccess(state) {
+    uploadSuccess(state, user) {
       state.status.uploaded = true;
+      state.user = user;
     },
     uploadFailure(state) {
       state.status.uploaded = false;

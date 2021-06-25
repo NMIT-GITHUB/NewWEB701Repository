@@ -54,15 +54,17 @@ class AuthService {
     .then(response => {
       //sets browsers user to match returned user
       localStorage.setItem('user', JSON.stringify(response.data.updatedUser));
-      return response.data.message;
+      return response.data;
     })
   }
 
   // handles redeem request using the user submitted
-  redeem(user) {
+  redeem(submission) {
+    console.log(submission.beneficiary)
     //requests redeem from backend using API_URL and the username of the data entered
     return axios.post(API_URL + 'redeem', {
-      username: user.username
+      username: submission.user.username,
+      beneficiary: submission.beneficiary
     })
     .then(response => {
       //sets browsers user to match returned user

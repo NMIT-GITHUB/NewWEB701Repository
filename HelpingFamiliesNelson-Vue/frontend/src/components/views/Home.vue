@@ -1,9 +1,13 @@
 <template>
   <div class="container">
-    <header class="jumbotron">
-      <h3>{{ content }}</h3>
-    </header>
+    <br>
     <carousel-section />
+    <br>
+    <hr>
+    <br>
+    <donate-panel-section />
+    <br>
+    <hr>
     <poll-section :key="reRenderKey"></poll-section>
   </div>
 </template>

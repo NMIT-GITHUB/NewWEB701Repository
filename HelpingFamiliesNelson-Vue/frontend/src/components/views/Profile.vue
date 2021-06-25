@@ -5,14 +5,6 @@
         <strong>{{currentUser.username}}'s</strong> Profile
       </h3>
     </header>
-    <!-- <p>
-      <strong>Token:</strong>
-      {{currentUser.accessToken.substring(0, 20)}} ... {{currentUser.accessToken.substr(currentUser.accessToken.length - 20)}}
-    </p>
-    <p>
-      <strong>Id:</strong>
-      {{currentUser.id}}
-    </p> -->
     <p>
       <strong>Email:</strong>
       {{currentUser.email}}
@@ -29,18 +21,25 @@
       <strong>User Type:</strong>
       {{currentUser.userType}}
     </p>
-    <p>
+    <div v-if="charity">
+      <p>
       <strong>Number of items donated:</strong>
       {{currentUser.items.length}}
     </p>
-    <p>
-      <strong>Number of tokens available:</strong>
+      <p>
+      <strong>Number of tokens available for voting:</strong>
       {{currentUser.tokens}}
     </p>
-    <strong>List of donated ObjectId's:</strong>
-    <ul>
-      <li v-for="item in currentUser.items" :key="item">{{item}}</li>
-    </ul>
+      <strong>List of donated Objects:</strong>
+      <ul>
+        <li v-for="item in currentUser.items" :key="item">{{item}}</li>
+      </ul>
+    </div>
+    <div v-if="!charity">
+      <strong>Number of people that have voted for you! </strong>
+      {{currentUser.tokens}}
+    </div>
+    <br>
   </div>
 </template>
 
@@ -60,36 +59,31 @@ export default {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
+    itemList() {
+      return JSON.stringify(this.currentUser.items[0]);
+    },
+    charity() {
+      if (this.$store.state.auth.user)
+      {
+        if (this.$store.state.auth.user.userType == "Charity")
+        {
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+      else{
+        return false;
+      }
+    }
   },
   mounted() {
     //if user isnt logged in, push to login view
     if (!this.currentUser) {
       this.$router.push('/login');
     }
-    // else {
-    //   this.message = "";
-    //   this.gotItems = false;
-
-    //   this.$store.dispatch("auth/getItems", this.currentUser).then(
-    //     (data) => {
-    //       this.message = data.message;
-    //       console.log(data);
-    //       this.successful = true;
-    //       this.loading = false;
-    //     },
-    //     (error) => {
-    //       this.message =
-    //         (error.response &&
-    //           error.response.data &&
-    //           error.response.data.message) ||
-    //         error.message ||
-    //         error.toString();
-    //       this.successful = false;
-    //       this.loading = false;
-    //     }
-    //   );
-    // }
-
+    
   },
 };
 </script>

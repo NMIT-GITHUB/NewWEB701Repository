@@ -7,11 +7,11 @@
             <div class="col-xs-12 col-sm-4 col-md-4">
                 <h5>Quick links</h5>
                 <ul class="list-unstyled quick-links" routerLinkActive="active">
-                    <li><a href="/home" routerLink="home"><i class="fa fa-angle-double-right"></i>Home</a></li>
-                    <li><a href="/about" routerLink="about"><i class="fa fa-angle-double-right"></i>About</a></li>
-                    <li><a href="/contact" routerLink="contact"><i class="fa fa-angle-double-right"></i>Contact</a></li>
-                    <li><a href="/donate" routerLink="donate"><i class="fa fa-angle-double-right"></i>Donate</a></li>
-                    <li><a href="/profile" routerLink="profile"><i class="fa fa-angle-double-right"></i>Profile</a></li>
+                    <li><router-link to="/home"><i class="fa fa-angle-double-right"></i>Home</router-link></li>
+                    <li><router-link to="/about"><i class="fa fa-angle-double-right"></i>About</router-link></li>
+                    <li><router-link to="/contact"><i class="fa fa-angle-double-right"></i>Contact</router-link></li>
+                    <li><router-link to="/donate"><i class="fa fa-angle-double-right"></i>Donate</router-link></li>
+                    <li><router-link to="/profile"><i class="fa fa-angle-double-right"></i>Profile</router-link></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-4 col-md-4">
@@ -27,11 +27,11 @@
             <div class="col-xs-12 col-sm-4 col-md-4" style="text-align: right;">
                 <h5 style="border-left: 0px; border-right: 3px solid #eeeeee; padding-right: 10px;">Quick links  </h5>
                 <ul class="list-unstyled quick-links" routerLinkActive="active">
-                    <li><a href="/home" routerLink="home">Home <i class="fa fa-angle-double-left"></i></a></li>
-                    <li><a href="/about" routerLink="about">About <i class="fa fa-angle-double-left"></i></a></li>
-                    <li><a href="/contact" routerLink="contact">Contact <i class="fa fa-angle-double-left"></i></a></li>
-                    <li><a href="/donate" routerLink="donate">Donate <i class="fa fa-angle-double-left"></i></a></li>
-                    <li><a href="/profile" routerLink="profile">Profile <i class="fa fa-angle-double-left"></i></a></li>
+                    <li><router-link to="/home">Home <i class="fa fa-angle-double-left"></i></router-link></li>
+                    <li><router-link to="/about">About <i class="fa fa-angle-double-left"></i></router-link></li>
+                    <li><router-link to="/contact">Contact <i class="fa fa-angle-double-left"></i></router-link></li>
+                    <li><router-link to="/donate">Donate <i class="fa fa-angle-double-left"></i></router-link></li>
+                    <li><router-link to="/profile">Profile <i class="fa fa-angle-double-left"></i></router-link></li>
                 </ul>
             </div>
         </div>

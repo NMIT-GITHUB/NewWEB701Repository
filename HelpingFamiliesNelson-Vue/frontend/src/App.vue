@@ -51,24 +51,6 @@
             </div>
           </router-link>
         </li>
-        <li v-if="showAdminBoard" class="nav-item">
-          <router-link to="/admin" class="nav-link">Admin Board</router-link>
-        </li>
-        <li v-if="showModeratorBoard" class="nav-item">
-          <router-link to="/mod" class="nav-link">Moderator Board</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link v-if="currentUser" to="/user" class="nav-link">
-          <div class="p-2">
-              <div class="text-center">
-                <font-awesome-icon icon="users"/>
-              </div>
-              <div class="text-center">
-                <div>User<br>Whakapaa</div>
-              </div>
-            </div>
-            </router-link>
-        </li>
       </div>
 
       <div v-if="!currentUser" class="navbar-nav ml-auto">
@@ -138,7 +120,11 @@
 </template>
 
 <script>
+
 export default {
+  mounted() {
+    window.scrollTo(0,0);
+  },
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
@@ -147,7 +133,6 @@ export default {
       if (this.currentUser && this.currentUser['roles']) {
         return this.currentUser['roles'].includes('ROLE_ADMIN');
       }
-
       return false;
     },
     showModeratorBoard() {

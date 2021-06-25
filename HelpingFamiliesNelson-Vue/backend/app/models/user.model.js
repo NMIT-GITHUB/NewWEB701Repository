@@ -15,8 +15,11 @@ const User = mongoose.model(
     userType: String,
     items: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Item"
+        categoryName: String,
+        size: String,
+        gender: String,
+        age: Number,
+        other: String,
       }
     ],
   })
